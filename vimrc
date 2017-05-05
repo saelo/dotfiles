@@ -15,24 +15,27 @@ Plugin 'VundleVim/Vundle.vim'
 "                     Plugins                         "
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'airblade/vim-gitgutter'
+
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'rking/ag.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'fatih/vim-go'
+
+Plugin 'ervandew/supertab'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'rking/ag.vim'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'terryma/vim-expand-region'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'wellle/targets.vim'
 Plugin 'justinmk/vim-sneak'
-Plugin 'keith/swift.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'matze/vim-move'
+
+Plugin 'keith/swift.vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'fatih/vim-go'
 
 Plugin 'altercation/vim-colors-solarized'
 
