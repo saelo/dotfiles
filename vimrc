@@ -28,7 +28,10 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'terryma/vim-expand-region'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'wellle/targets.vim'
+Plugin 'justinmk/vim-sneak'
 Plugin 'keith/swift.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'matze/vim-move'
 Plugin 'rust-lang/rust.vim'
 
 Plugin 'altercation/vim-colors-solarized'
@@ -79,7 +82,7 @@ set wildignore+=*/build/*,*.so,*.swp,*.zip,*.o,.git/*,.hg/*,.svn/*,*.db
 "
 " Folding
 "
-set foldmethod=syntax   " fold by syntax
+set foldmethod=indent   " fold by indention level
 set foldcolumn=4        " show up to 4 levels of indention on the left
 set foldlevel=10        " show ten levels of indetion by default
 
@@ -89,8 +92,6 @@ set foldlevel=10        " show ten levels of indetion by default
 set shiftwidth=4        " use 4 spaces for each level of indetion
 set tabstop=4           " show tabs as 4 spaces
 set expandtab           " replace tabs with spaces
-
-filetype plugin indent on                   " enable indention based on file type
 
 set backspace=indent,eol,start              " make backspace key more powerful in insert mode
 
@@ -103,13 +104,6 @@ set completeopt=menu,menuone,longest
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
-
-" Enable persistent undo.
-try
-  set undodir=~/.vim/undo
-  set undofile
-catch
-endtry
 
 " Type w!! to write file as root
 cmap w!! w !sudo tee % >/dev/null
@@ -124,14 +118,6 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
-
-
-" Ctrl-P Plugin
-" Dedicated command for buffer finding: Ctrl-O
-nnoremap <C-o> :CtrlPBuffer<CR>
-
-" Use Ag to find files
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 
 "
@@ -149,23 +135,9 @@ noremap  <buffer> <silent> $ g$
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
-nnoremap <leader>g :YcmCompleter GoTo<CR>
-
 " Incremental visual mode
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
-
-"
-" Miscellaneous
-"
-
-autocmd vimenter * if !argc() | NERDTree | endif    " automatically open NERDTree if no arguments were given to vim
-
-" OpenCL
-au BufNewFile,BufRead *.cl set filetype=c
-au BufNewFile,BufRead *.jsm set filetype=javascript " jsm are mozilla's JavaScript modules
-
-let g:tex_flavor = "latex"
 
 
 "
@@ -182,9 +154,6 @@ nmap <silent> * :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " search for the selected word in the current directory
 nmap ` :Ag! <c-r>=expand("<cword>")<cr><cr>
-
-" reload vimrc on F12
-nnoremap <F12> :so ~/.vimrc <CR>
 
 "
 " Automatically trim trailing whitespace when saving files.
@@ -214,29 +183,22 @@ let g:airline_theme = 'molokai'
 let g:airline_powerline_fonts = 1       " make sure powerline fonts are installed: https://powerline.readthedocs.org/en/latest/installation/linux.html
 let g:airline#extensions#tabline#enabled = 1
 
-
-" disable ctrl-n for multiple cursor plugin (used by goldenview)
-let g:multi_cursor_use_default_mapping = 0
-let g:multi_cursor_start_key = '<C-m>'
-let g:multi_cursor_next_key = '<C-n>'
-let g:multi_cursor_prev_key = '<C-p>'
-let g:multi_cursor_skip_key = '<C-x>'
-let g:multi_cursor_quit_key = '<Esc>'
-
-" format with goimports instead of gofmt
-" let g:go_fmt_command = "goimports"
-
-
 "
 " YouCompleteMe settings.
 "
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_always_populate_location_list = 1
 let g:ycm_complete_in_comments = 1
 " Load .ycm_extra_conf.py files automatically if they are in ~/Workspace.
 " let g:ycm_extra_conf_globlist = ['~/Workspace/*', '/Volumes/Workspace/*']
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+"
+" Ctrl-P settings.
+"
+nnoremap <C-B> :CtrlPBuffer<CR>
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
 
 
 "
