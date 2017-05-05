@@ -108,6 +108,10 @@ set completeopt=menu,menuone,longest
 " dialogue asking if you wish to save changed files.
 set confirm
 
+" Enable persistent undo
+set undodir=~/.vim/undo
+set undofile
+
 " Type w!! to write file as root
 cmap w!! w !sudo tee % >/dev/null
 

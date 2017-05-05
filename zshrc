@@ -79,7 +79,9 @@ alias g++='g++ --std=c++11'
 alias clang++='clang++ --std=c++11'
 
 # neovim rulez
-alias vim=nvim
+if hash nvim 2>/dev/null; then
+  alias vim=nvim
+fi
 
 # Clear pacman cache: Only keep the latest version of every installed package in the cache
 alias clearcache='sudo paccache -r -k 1; sudo paccache -r -u -k 0'
