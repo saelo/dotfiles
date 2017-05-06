@@ -1,97 +1,83 @@
+" 
+" Plugins
 "
-" Vundle
-"
-set nocompatible        " be IMproved
-filetype off            " required, reverted below
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugins')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'scrooloose/nerdtree'
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
-"                     Plugins                         "
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
-Plugin 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'edkolev/tmuxline.vim'
+Plug 'ervandew/supertab'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'scrooloose/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'mileszs/ack.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-expand-region'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'wellle/targets.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+Plug 'matze/vim-move'
 
-Plugin 'ervandew/supertab'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'rking/ag.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'terryma/vim-expand-region'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'wellle/targets.vim'
-Plugin 'justinmk/vim-sneak'
-Plugin 'tpope/vim-surround'
-Plugin 'matze/vim-move'
+Plug 'keith/swift.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'fatih/vim-go'
 
-Plugin 'keith/swift.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'fatih/vim-go'
+Plug 'altercation/vim-colors-solarized'
 
-Plugin 'altercation/vim-colors-solarized'
+call plug#end()
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
 
 "
-" Settings
+" General settings
 "
-set number              " show line numbers
-set relativenumber      " and show them relative to the current line
-set laststatus=2        " always show status bar
-set ttimeoutlen=50      " low timout when leaving insert mode
+set nocompatible            " be IMproved
 
-set spelllang=en        " set spellcheck language
+filetype plugin indent on   " enable indention based on filetype
 
-syntax on               " enable syntax highligthing
+syntax on                   " enable syntax highligthing
 
-set mouse=a             " enable mouse support
+set number                  " show line numbers
+set relativenumber          " and show them relative to the current line
 
-set splitright          " split vertical windows right to the current windows
-set splitbelow          " split horizontal windows below to the current windows
+set laststatus=2            " always show status bar
+set ttimeoutlen=50          " low timout when leaving insert mode
 
-set ttyfast
+set spelllang=en            " set spellcheck language
 
-set synmaxcol=500       " Workaround, overly long lines cause problems...
+set mouse=a                 " enable mouse support
 
-set showmatch           " highlight matching [{()}]
+set splitright              " split vertical windows right to the current windows
+set splitbelow              " split horizontal windows below to the current windows
 
-"
+set synmaxcol=500           " Workaround, overly long lines cause problems...
+
+set showmatch               " highlight matching [{()}]
+
 " Searching
-"
-set showcmd             " show partial commands while typing
-set incsearch           " show matches while typing
-set hlsearch            " highlight all matches
-set ignorecase          " search case insensitive...
-set smartcase           " ... but not when search pattern contains upper case characters
+set showcmd                 " show partial commands while typing
+set incsearch               " show matches while typing
+set hlsearch                " highlight all matches
+set ignorecase              " search case insensitive...
+set smartcase               " ... but not when search pattern contains upper case characters
 
 "show search matches in the middle of the window
-nnoremap n nzz
-nnoremap N Nzz
+"nnoremap n nzz
+"nnoremap N Nzz
 
 " Ignore binary/build files when completing/searching
-set wildignore+=*/build/*,*.so,*.swp,*.zip,*.o,.git/*,.hg/*,.svn/*,*.db
+set wildignore+=*.so,*.swp,*.zip,*.o,.git/*,.hg/*,.svn/*,*.db
 
-"
 " Folding
-"
 set foldmethod=indent   " fold by indention level
 set foldcolumn=4        " show up to 4 levels of indention on the left
 set foldlevel=10        " show ten levels of indetion by default
 
-"
 " Indention
-"
 set shiftwidth=4        " use 4 spaces for each level of indetion
 set tabstop=4           " show tabs as 4 spaces
 set expandtab           " replace tabs with spaces
@@ -101,7 +87,7 @@ set backspace=indent,eol,start              " make backspace key more powerful i
 set wildmenu wildmode=longest:full,full     " command autocompletion: complete as much as possible and show remaining choices
 
 
-" improve the complete menu
+" improve the menu completion
 set completeopt=menu,menuone,longest
 
 " Instead of failing a command because of unsaved changes, instead raise a
@@ -116,15 +102,7 @@ set undofile
 cmap w!! w !sudo tee % >/dev/null
 
 " Set <leader> to <space>
-let mapleader = "\<Space>"
-
-" Easier copy+paste to system clipboard
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+let mapleader="\<Space>"
 
 
 "
@@ -142,16 +120,10 @@ noremap  <buffer> <silent> $ g$
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
-" Incremental visual mode
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
 
 "
 " Mappings
 "
-nmap <F7> :NERDTreeToggle<CR>
-
 " clear currently highlighted search items when hitting <Space>
 nmap <silent> <Space> :nohlsearch <Bar> :echo<CR>
 
@@ -159,8 +131,14 @@ nmap <silent> <Space> :nohlsearch <Bar> :echo<CR>
 " move to the next occurance
 nmap <silent> * :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
-" search for the selected word in the current directory
-nmap ` :Ag! <c-r>=expand("<cword>")<cr><cr>
+" Easier copy+paste to system clipboard
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
 
 "
 " Automatically trim trailing whitespace when saving files.
@@ -174,43 +152,35 @@ endfunction
 "autocmd FilterWritePre * :call TrimWhiteSpace()
 "autocmd BufWritePre    * :call TrimWhiteSpace()
 
-" Use visual bell instead of beeping when doing something wrong
-set noerrorbells visualbell
+"
+" Plugin specific settings 
+"
 
-"
-" Abbreviations
-"
-ab cpsg Copyright (c) 2017 Samuel Groß
+" Ack settings
+let g:ackprg = 'ag --vimgrep'           " Use ag instead 
+nmap ` :Ack!<cr>                        " search for the word under the cursor
 
 
-"
-" Airline settings.
-"
+" Airline settings
 let g:airline_theme = 'molokai'
 let g:airline_powerline_fonts = 1       " make sure powerline fonts are installed: https://powerline.readthedocs.org/en/latest/installation/linux.html
 let g:airline#extensions#tabline#enabled = 1
 
-"
-" YouCompleteMe settings.
-"
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_complete_in_comments = 1
-" Load .ycm_extra_conf.py files automatically if they are in ~/Workspace.
-" let g:ycm_extra_conf_globlist = ['~/Workspace/*', '/Volumes/Workspace/*']
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
 
-"
-" Ctrl-P settings.
-"
+" Ctrl-P settings
 nnoremap <C-B> :CtrlPBuffer<CR>
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 
 
+" vim-expand-region settings -- incremental visual mode
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+
 "
 " Colorscheme
-"
+" "
 set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
@@ -223,3 +193,10 @@ highlight clear SignColumn              " clear SignColumn style thus forcing sa
 
 highlight Search ctermfg=darkgreen      " color for search highlighting
 highlight Search guifg=darkgreen
+
+
+"
+" Abbreviations
+"
+
+ab cpsg Copyright (c) 2017 Samuel Groß
