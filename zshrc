@@ -29,12 +29,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(repo python brew history-substring-search vagrant tmux encode64 history jsontools osx urltools web-search docker vi-mode)
+plugins=(repo python history-substring-search vagrant tmux encode64 history jsontools osx urltools web-search docker vi-mode)
 
 source $ZSH/oh-my-zsh.sh
-
-# Hack: set per-directory-history to use the gobal history by default
-#_per-directory-history-set-global-history
 
 # Customize to your needs...
 
