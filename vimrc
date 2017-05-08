@@ -1,7 +1,6 @@
-" 
+"
 " Plugins
 "
-
 call plug#begin('~/.vim/plugins')
 
 Plug 'scrooloose/nerdtree'
@@ -26,7 +25,9 @@ Plug 'matze/vim-move'
 Plug 'keith/swift.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
+Plug 'saelo/smarttrim.vim'
 
+Plug 'tomasr/molokai'
 Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
@@ -86,7 +87,6 @@ set backspace=indent,eol,start              " make backspace key more powerful i
 
 set wildmenu wildmode=longest:full,full     " command autocompletion: complete as much as possible and show remaining choices
 
-
 " improve the menu completion
 set completeopt=menu,menuone,longest
 
@@ -108,9 +108,6 @@ let mapleader="\<Space>"
 "
 " Navigation
 "
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
-
 " navigate by display lines, not file lines
 "noremap  <buffer> <silent> k gk
 "noremap  <buffer> <silent> j gj
@@ -141,36 +138,33 @@ vmap <Leader>P "+P
 
 
 "
-" Automatically trim trailing whitespace when saving files.
-"
-function! TrimWhiteSpace()
-  %s/\s\+$//e
-endfunction
-
-"autocmd FileWritePre   * :call TrimWhiteSpace()
-"autocmd FileAppendPre  * :call TrimWhiteSpace()
-"autocmd FilterWritePre * :call TrimWhiteSpace()
-"autocmd BufWritePre    * :call TrimWhiteSpace()
-
-"
-" Plugin specific settings 
+" Plugin specific settings
 "
 
 " Ack settings
-let g:ackprg = 'ag --vimgrep'           " Use ag instead 
+let g:ackprg = 'ag --vimgrep'           " Use ag instead
 nmap ` :Ack!<cr>                        " search for the word under the cursor
 
 
 " Airline settings
 let g:airline_theme = 'molokai'
-let g:airline_powerline_fonts = 1       " make sure powerline fonts are installed: https://powerline.readthedocs.org/en/latest/installation/linux.html
-let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1               " make sure powerline fonts are installed: https://powerline.readthedocs.org/en/latest/installation/linux.html
+"let g:airline#extensions#tabline#enabled = 1    " show buffers as tabs
+
+
+" vim-move settings
+let g:move_key_modifier = 'C'           " use <C-j> and <C-k>
 
 
 " Ctrl-P settings
-nnoremap <C-B> :CtrlPBuffer<CR>
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
+
+" make CtrlPBuffer the default action and use <leader> for the others
+let g:ctrlp_cmd = 'CtrlPBuffer'
+nnoremap <leader>f :CtrlP<cr>
+nnoremap <leader>m :CtrlPMRU<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
 
 
 " vim-expand-region settings -- incremental visual mode
@@ -180,23 +174,17 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 "
 " Colorscheme
-" "
+"
 set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-colorscheme solarized
+colorscheme molokai
 
 highlight clear LineNr                  " transparent line number column
 highlight clear FoldColumn              " transparent fold column
 highlight clear Folded                  " transparent fold block background
 highlight clear SignColumn              " clear SignColumn style thus forcing same style for git column and number column
 
-highlight Search ctermfg=darkgreen      " color for search highlighting
-highlight Search guifg=darkgreen
-
 
 "
 " Abbreviations
 "
-
 ab cpsg Copyright (c) 2017 Samuel Groß
