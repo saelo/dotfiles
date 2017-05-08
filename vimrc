@@ -29,6 +29,7 @@ Plug 'saelo/smarttrim.vim'
 
 Plug 'tomasr/molokai'
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -98,6 +99,9 @@ set confirm
 set undodir=~/.vim/undo
 set undofile
 
+" Full color mode
+set termguicolors
+
 " Type w!! to write file as root
 cmap w!! w !sudo tee % >/dev/null
 
@@ -147,7 +151,7 @@ nmap ` :Ack!<cr>                        " search for the word under the cursor
 
 
 " Airline settings
-let g:airline_theme = 'molokai'
+let g:airline_theme = 'gruvbox'
 let g:airline_powerline_fonts = 1               " make sure powerline fonts are installed: https://powerline.readthedocs.org/en/latest/installation/linux.html
 "let g:airline#extensions#tabline#enabled = 1    " show buffers as tabs
 
@@ -176,7 +180,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " Colorscheme
 "
 set background=dark
-colorscheme molokai
+colorscheme gruvbox
 
 highlight clear LineNr                  " transparent line number column
 highlight clear FoldColumn              " transparent fold column
