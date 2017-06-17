@@ -100,7 +100,9 @@ set undodir=~/.vim/undo
 set undofile
 
 " Full color mode
-set termguicolors
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " Type w!! to write file as root
 cmap w!! w !sudo tee % >/dev/null

@@ -75,6 +75,13 @@ alias gdb='gdb -q'
 alias g++='g++ --std=c++11'
 alias clang++='clang++ --std=c++11'
 
+# IDA SDK
+export __MAC__=1
+export __EA64__=1
+export MACSDK=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+export PATH=/Applications/IDA\ Pro\ 6.95/idaq.app/Contents/MacOS/idasdk695/bin:$PATH
+alias idamake='idamake.pl 2>&1'
+
 # neovim rulez
 if hash nvim 2>/dev/null; then
   alias vim=nvim
