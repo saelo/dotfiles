@@ -49,7 +49,7 @@ export PATH="$PATH:$HOME/Stuff/depot_tools"
 #export PATH=$HOME/bin/depot_tools:$PATH
 
 # Path for Understand binaries
-export PATH=$PATH:~/Applications/Understand.app/Contents/MacOS
+export PATH=$PATH:/Applications/Understand.app/Contents/MacOS
 
 # Set up rvm if installed
 if [ -d $HOME/.rvm ]; then
