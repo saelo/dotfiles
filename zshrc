@@ -152,10 +152,10 @@ extract() {
 #
 # Highlights every occurande of the search pattern while displaying the whole content
 #
-# usage: cmd | highlight search_pattern
-#        highlight search_pattern file
+# usage: cmd | hlgrep search_pattern
+#        hlgrep search_pattern file
 #
-highlight() {
+hlgrep() {
   grep -E "$|$1" --color $2
 }
 

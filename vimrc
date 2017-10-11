@@ -110,6 +110,9 @@ cmap w!! w !sudo tee % >/dev/null
 " Set <leader> to <space>
 let mapleader="\<Space>"
 
+" Set filetype to lisp for macOS sandbox profiles
+autocmd BufNewFile,BufRead *.sb set syntax=lisp
+
 
 "
 " Navigation
